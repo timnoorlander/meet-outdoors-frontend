@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Root } from "./root";
-import { Map } from "@/features/Map";
+import { Map } from "@/features/map";
 
 const router = createBrowserRouter([
   {

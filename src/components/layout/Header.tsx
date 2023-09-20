@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 import { NavLink } from "react-router-dom";
+import { Button } from "../elements/Button";
 
 export function Header() {
   return (
@@ -22,6 +23,7 @@ export function Header() {
             </NavigationItem>
           </ul>
         </Navigation>
+        <HeaderButton>Create new activity</HeaderButton>
       </Content>
     </Container>
   );
@@ -32,7 +34,7 @@ const Container = styled.header`
   z-index: 100000000;
   height: 42px;
   opacity: 0.9;
-  background: ${theme.primary};
+  background: ${theme.color.primary};
   color: white;
   padding: 16px 0;
   width: 100vw;
@@ -52,7 +54,7 @@ const Title = styled.h1`
 `;
 
 const TitleMiddlePart = styled.span`
-  color: ${theme.lightGreen};
+  color: ${theme.color.lightGreen};
 `;
 
 const Navigation = styled.nav``;
@@ -71,25 +73,25 @@ const NavigationItem = styled.li`
   }
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled(NavLink).attrs({ as: Button })`
   background: transparent;
-  color: white;
   border: 2px solid transparent;
-  padding: 8px 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  text-decoration: none;
 
   &:hover {
-    border: 2px solid white;
-    border-radius: 4px;
+    color: white;
+    background: transparent;
   }
 
+  // The "active" class is added by react-router
   &.active {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
   }
+`;
+
+const HeaderButton = styled(Button)`
+  background: transparent;
+  color: white;
+  border: 2px solid white;
 `;
