@@ -1,29 +1,32 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import { NavLink } from "react-router-dom";
-import { Button } from "../elements/Button";
+import { Link, NavLink } from "react-router-dom";
 
 export function Header() {
   return (
     <Container>
       <Content>
-        <Title>
-          Meet<TitleMiddlePart>Outdoors</TitleMiddlePart>.io
-        </Title>
+        <TitleLink to="/">
+          <Title>
+            Meet<TitleMiddlePart>Outdoors</TitleMiddlePart>.io
+          </Title>
+        </TitleLink>
         <Navigation>
           <ul>
             <NavigationItem>
-              <StyledNavLink to="/">Outdoor Activities</StyledNavLink>
+              <HeaderNavButton to="/">Outdoor Activities</HeaderNavButton>
             </NavigationItem>
             <NavigationItem>
-              <StyledNavLink to="how-it-works">How it works</StyledNavLink>
+              <HeaderNavButton to="how-it-works">How it works</HeaderNavButton>
             </NavigationItem>
             <NavigationItem>
-              <StyledNavLink to="blog">Blog</StyledNavLink>
+              <HeaderNavButton to="blog">Blog</HeaderNavButton>
             </NavigationItem>
           </ul>
         </Navigation>
-        <HeaderButton>Create new activity</HeaderButton>
+        <Link to="create-new-activity">
+          <HeaderButton>Create new activity</HeaderButton>
+        </Link>
       </Content>
     </Container>
   );
@@ -32,30 +35,35 @@ export function Header() {
 const Container = styled.header`
   position: absolute;
   z-index: 100000000;
-  height: 42px;
+  width: 100%;
   opacity: 0.9;
   background: ${theme.color.primary};
   color: white;
-  padding: 16px 0;
-  width: 100vw;
 `;
 
 const Content = styled.div`
-  margin: 0 auto;
-  max-width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 16px 10vw;
+`;
+
+const TitleLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const Title = styled.h1`
   font-weight: bold;
   font-size: 2rem;
+  text-decoration: none;
+  color: white;
 `;
 
 const TitleMiddlePart = styled.span`
   color: ${theme.color.lightGreen};
 `;
+
+// TODO: button underline is gone.
 
 const Navigation = styled.nav``;
 
@@ -73,9 +81,25 @@ const NavigationItem = styled.li`
   }
 `;
 
-const StyledNavLink = styled(NavLink).attrs({ as: Button })`
+const headerButtonBase = css`
   background: transparent;
+  color: white;
   border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+
+  &:hover {
+    border: 2px solid white;
+  }
+`;
+
+const HeaderNavButton = styled(NavLink)`
+  ${headerButtonBase}
 
   &:hover {
     color: white;
@@ -90,8 +114,13 @@ const StyledNavLink = styled(NavLink).attrs({ as: Button })`
   }
 `;
 
-const HeaderButton = styled(Button)`
-  background: transparent;
-  color: white;
+const HeaderButton = styled.button`
+  ${headerButtonBase}
+
   border: 2px solid white;
+
+  &:hover {
+    background: white;
+    color: ${theme.color.primary};
+  }
 `;
