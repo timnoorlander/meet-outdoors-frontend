@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
+import { theme } from "./theme";
 
 const cssReset = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -153,4 +154,10 @@ export const GlobalStyles = createGlobalStyle`
   body {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
+
+  h1 {
+    font-size: 2rem;
+    color: ${theme.color.darkGreen};
+  }
+
 `;
