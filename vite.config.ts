@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": "/src", // Map the '@' alias to the 'src' directory
+      "@": "/src", // Map the '@' alias to the 'src' directory,
+      "@mui/styled-engine": "@mui/styled-engine-sc", // Add the alias for MUI
     },
   },
 });

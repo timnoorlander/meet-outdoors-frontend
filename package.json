@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/material": "^5.14.10",
+    "@mui/material": "^5.14.11",
+    "@mui/styled-engine-sc": "^5.14.11",
     "dayjs": "^1.11.9",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
@@ -19,12 +20,13 @@
     "react-hook-form": "^7.46.2",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.16.0",
-    "styled-components": "^6.0.8"
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/styled-components": "^5.1.28",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",

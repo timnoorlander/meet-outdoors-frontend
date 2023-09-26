@@ -5,7 +5,6 @@ import {
   Calendar,
   CalendarCell,
   CalendarGrid,
-  ComboBox,
   DateInput,
   DatePicker,
   DateSegment,
@@ -15,7 +14,6 @@ import {
   Input,
   Item,
   Label,
-  ListBox,
   Popover,
 } from "react-aria-components";
 import styled from "styled-components";
@@ -58,14 +56,7 @@ export function CreateActivity() {
               <Input type="text" {...register("name", { required: true })} />
             </Column>
             <Column>
-              <AutoComplete label="Category" name="category">
-                <Item>Aardvark</Item>
-                <Item>Cat</Item>
-                <Item>Dog</Item>
-                <Item>Kangaroo</Item>
-                <Item>Panda</Item>
-                <Item>Snake</Item>
-              </AutoComplete>
+              <AutoComplete />
             </Column>
           </TwoColumns>
 
