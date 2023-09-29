@@ -158,6 +158,7 @@ export const GlobalStyles = createGlobalStyle`
   h1 {
     font-size: 2rem;
     color: ${theme.color.darkGreen};
+    margin-bottom: 1.5rem;
   }
 
 `;

@@ -1,23 +1,11 @@
 import { ContentLayout } from "@/components/layout/ContentLayout";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {
-  Button,
-  Calendar,
-  CalendarCell,
-  CalendarGrid,
-  DateInput,
-  DatePicker,
-  DateSegment,
-  Dialog,
-  Group,
-  Heading,
-  Input,
-  Item,
-  Label,
-  Popover,
-} from "react-aria-components";
 import styled from "styled-components";
-import { AutoComplete } from "@/components/elements/form/AutoComplete";
+import { TextField, Autocomplete } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import dayjs from "dayjs";
+import { Button } from "@/components/elements/Button";
 
 enum ActivityCategory {
   "Birding",
@@ -28,7 +16,7 @@ enum ActivityCategory {
 }
 
 type Inputs = {
-  name: string;
+  title: string;
   category: ActivityCategory;
   startTime: string;
   endTime: string;
@@ -49,51 +37,36 @@ export function CreateActivity() {
       <NarrowContainer>
         <h1>Create new activity</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <TwoColumns>
-            <Column>
-              <Label>Name</Label>
-              <Input type="text" {...register("name", { required: true })} />
-            </Column>
-            <Column>
-              <AutoComplete />
-            </Column>
-          </TwoColumns>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <TextField label="Title" variant="outlined" />
 
-          <DatePicker granularity="minute">
-            <Label>Date</Label>
-            <Group>
-              <DateInput>
-                {(segment) => <DateSegment segment={segment} />}
-              </DateInput>
-              <Button>▼</Button>
-            </Group>
-            <Popover>
-              <Dialog>
-                <Calendar>
-                  <header>
-                    <Button slot="previous">◀</Button>
-                    <Heading />
-                    <Button slot="next">▶</Button>
-                  </header>
-                  <CalendarGrid>
-                    {(date) => <CalendarCell date={date} />}
-                  </CalendarGrid>
-                </Calendar>
-              </Dialog>
-            </Popover>
-          </DatePicker>
+          <Autocomplete
+            disablePortal
+            options={[{ label: "The Shawshank Redemption", year: 1994 }]}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="Category" variant="outlined" />
+            )}
+          />
 
-          <button type="submit">Create activity</button>
-        </form>
+          <TextField
+            label="Description"
+            multiline
+            rows={3}
+            placeholder="A short description about the activity..."
+            variant="outlined"
+          />
+
+          <DatePicker label="Start date" defaultValue={dayjs()} />
+
+          <TimePicker label="Start time" defaultValue={dayjs()} />
+
+          <Button type="submit">Create activity</Button>
+        </Form>
       </NarrowContainer>
     </ContentLayout>
   );
 }
-
-const InputField = styled(Input)`
-  width: 100%;
-`;
 
 const NarrowContainer = styled.div`
   margin-left: auto;
@@ -102,22 +75,8 @@ const NarrowContainer = styled.div`
   padding: 10px;
 `;
 
-const TwoColumns = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-
-  @media (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-
-const Column = styled.div`
-  width: 50%;
+const Form = styled.form`
   display: flex;
   flex-direction: column;
+  gap: 12px;
 `;
-
-// const Column = styled.div`
-//   flex: 1;
-// `;
