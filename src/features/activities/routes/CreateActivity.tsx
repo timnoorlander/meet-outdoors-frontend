@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ContentLayout } from "@/components/layout/ContentLayout";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import styled from "styled-components";
 import { TextField, Autocomplete } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import dayjs from "dayjs";
 import { Button } from "@/components/elements/Button";
-import H from "@here/maps-api-for-javascript";
 import useDebounce from "@/hooks/useDebounce";
-
-const platform = new H.service.Platform({
-  apikey: import.meta.env.VITE_HERE_API_KEY,
-});
-const service = platform.getSearchService();
+import { useGeoCoder } from "../hooks/useGeoCoder";
 
 enum ActivityCategory {
   "Birding",
@@ -33,36 +28,19 @@ type Inputs = {
 export function CreateActivity() {
   const [locationInput, setLocationInput] = useState("");
   const debouncedLocationInput = useDebounce(locationInput, 1000);
-  const [suggestedLocations, setSuggestedLocations] = useState([]);
 
-  useEffect(() => {
-    if (!debouncedLocationInput.length) {
-      return;
-    }
-
-    searchLocation(debouncedLocationInput);
-  }, [debouncedLocationInput]);
+  const { searchResults: suggestedLocations } = useGeoCoder(
+    debouncedLocationInput
+  );
 
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (inputs: Inputs) => {
     console.log(inputs);
   };
-
-  function searchLocation(locationSearchInput: string) {
-    service.geocode(
-      {
-        q: locationSearchInput,
-      },
-      (result) => {
-        setSuggestedLocations(result.items.map((item) => item.title));
-      },
-      () => console.log("something went wrong")
-    );
-  }
 
   return (
     <ContentLayout>
@@ -70,7 +48,21 @@ export function CreateActivity() {
         <h1>Create new activity</h1>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <TextField label="Title" variant="outlined" />
+          <Controller
+            name="title"
+            control={control}
+            defaultValue=""
+            rules={{ required: "Title is required" }}
+            render={({ field }) => (
+              <TextField
+                label="Title"
+                variant="outlined"
+                error={!!errors.title}
+                helperText={errors.title && errors.title.message}
+                {...field}
+              />
+            )}
+          />
 
           <Autocomplete
             disablePortal

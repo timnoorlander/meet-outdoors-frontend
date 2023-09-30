@@ -31,3 +31,4 @@ If you are developing a production application, we recommend updating the config
 - Set up MSW
 - Finish visual part of create activity form
 - Create basic tests
+- Enable "Trusted domains" in HERE once I have a domain
