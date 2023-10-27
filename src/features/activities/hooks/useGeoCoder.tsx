@@ -1,5 +1,6 @@
 import H from "@here/maps-api-for-javascript";
 import { useEffect, useState } from "react";
+import { Position, GeoCoderResult } from "../types";
 
 // TODO: Create singleton for HERE initialization.
 const platform = new H.service.Platform({
@@ -8,11 +9,11 @@ const platform = new H.service.Platform({
 const service = platform.getSearchService();
 
 type HereAPIGeoCodingResult = {
-  items: { title: string }[];
+  items: { title: string; position: Position }[];
 };
 
 export function useGeoCoder(searchInput: string) {
-  const [searchResults, setSearchResults] = useState<string[]>([]);
+  const [searchResults, setSearchResults] = useState<GeoCoderResult[]>([]);
 
   useEffect(() => {
     if (!searchInput.length) {
@@ -20,7 +21,12 @@ export function useGeoCoder(searchInput: string) {
     }
 
     const successCallback = (result: HereAPIGeoCodingResult) => {
-      setSearchResults(result.items.map((item) => item.title));
+      setSearchResults(
+        result.items.map((item) => ({
+          label: item.title,
+          position: item.position,
+        }))
+      );
     };
 
     const errorCallback = () => {
