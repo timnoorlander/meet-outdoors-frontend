@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { ContentLayout } from "@/components/layout/ContentLayout";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import styled from "styled-components";
@@ -48,6 +49,8 @@ export function CreateActivity() {
 
     // MERGE DATE AND TIME INTO SINGLE DATETIME
     console.log(inputs);
+
+    axios.post("/create-activity");
   };
 
   return (
