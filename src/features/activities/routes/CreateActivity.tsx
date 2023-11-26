@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { ContentLayout } from "@/components/layout/ContentLayout";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { ContentLayout } from "@/components/layout/ContentLayout";
 import styled from "styled-components";
 import { TextField, Autocomplete, MenuItem } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -30,6 +31,8 @@ type Inputs = {
 };
 
 export function CreateActivity() {
+  const navigate = useNavigate();
+
   const [locationInput, setLocationInput] = useState("");
   const debouncedLocationInput = useDebounce(locationInput, 1000);
 
@@ -43,14 +46,28 @@ export function CreateActivity() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (inputs: Inputs) => {
-    // Validation:
-    // - Block time in past if date of today is selected
+  const onSubmit: SubmitHandler<Inputs> = async (inputs: Inputs) => {
+    const startDateTime = mergeDateAndTimeIntoDateTime(
+      inputs.startDate,
+      inputs.startTime
+    ).toISOString();
 
-    // MERGE DATE AND TIME INTO SINGLE DATETIME
-    console.log(inputs);
+    console.log(startDateTime);
 
-    axios.post("/create-activity");
+    try {
+      await axios.post("/create-activity", {
+        title: inputs.title,
+        category: inputs.category,
+        description: inputs.description,
+        startDateTime,
+        location: inputs.location,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("does it even get here?");
+      navigate("/");
+    }
   };
 
   return (
@@ -200,3 +217,9 @@ const Form = styled.form`
   flex-direction: column;
   gap: 12px;
 `;
+
+function mergeDateAndTimeIntoDateTime(date: string, time: string) {
+  return dayjs(
+    `${dayjs(date).format("YYYY-MM-DD")} ${dayjs(time).format("HH:mm:ss")}`
+  );
+}

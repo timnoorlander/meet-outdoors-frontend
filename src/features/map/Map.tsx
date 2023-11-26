@@ -7,6 +7,8 @@ import { useEffect } from "react";
 
 const position: LatLngExpression = [55.6761, 12.5683];
 
+// TODO: hook up with msw and React Query
+
 export function Map() {
   return (
     <Container>
