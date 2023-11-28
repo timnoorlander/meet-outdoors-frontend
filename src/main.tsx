@@ -8,6 +8,7 @@ import { GlobalStyles } from "./global-styles.ts";
 import { AppRoutes } from "./routes/index.tsx";
 import "dayjs/locale/da";
 import { theme } from "./theme.ts";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const muiTheme = createTheme({
   palette: {
@@ -19,6 +20,8 @@ const muiTheme = createTheme({
     },
   },
 });
+
+const queryClient = new QueryClient();
 
 async function enableMocking() {
   if (import.meta.env.MODE !== "development") {
@@ -44,8 +47,10 @@ enableMocking().then(() => {
     <React.StrictMode>
       <ThemeProvider theme={muiTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="da">
-          <GlobalStyles />
-          <AppRoutes />
+          <QueryClientProvider client={queryClient}>
+            <GlobalStyles />
+            <AppRoutes />
+          </QueryClientProvider>
         </LocalizationProvider>
       </ThemeProvider>
     </React.StrictMode>
