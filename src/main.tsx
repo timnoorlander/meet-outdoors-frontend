@@ -31,8 +31,11 @@ async function enableMocking() {
   const { worker } = await import("../mocks/browser");
   return worker.start({
     onUnhandledRequest(request, print) {
-      // Ignore any requests containing "cdn.com" in their URL.
-      if (request.url.includes("openstreetmap.org")) {
+      // Ignore any requests containing "openstreetmap.org" or "node_modules" in their URL.
+      if (
+        request.url.includes("openstreetmap.org") ||
+        request.url.includes("node_modules")
+      ) {
         return;
       }
 
