@@ -1,4 +1,4 @@
-import L, { LatLngExpression } from "leaflet";
+import L from "leaflet";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import styled from "styled-components";
 import { useQuery } from "react-query";
@@ -6,13 +6,18 @@ import { MapActivity } from "./components/MapActivity";
 import { useEffect } from "react";
 import { getActivities } from "../activities/utils/api";
 import { GenericError } from "@/components/layout/GenericError";
+import { Coordinates } from "@/types";
+import { getCurrentLocation } from "../activities/utils/map";
 
-const position: LatLngExpression = [55.6761, 12.5683];
+const copenhagenCoordinates: Coordinates = { lat: 55.6761, lng: 12.5683 };
+const defaultPosition = copenhagenCoordinates;
+const defaultZoom = 12;
 
 export function Map() {
-  const query = useQuery("activities", getActivities);
+  const activitiesQuery = useQuery("activities", getActivities);
+  const userPositionQuery = useQuery("userPosition", getCurrentLocation);
 
-  if (query.isError) {
+  if (activitiesQuery.isError) {
     return <GenericError />;
   }
 
@@ -20,19 +25,36 @@ export function Map() {
     <Container>
       <MapContainer
         style={{ width: "100%", height: "100%" }}
-        center={position}
-        zoom={11}
+        center={[defaultPosition.lat, defaultPosition.lng]}
+        zoom={defaultZoom}
         scrollWheelZoom={true}
         zoomControl={false}
       >
+        <RecenterAutomatically
+          lat={userPositionQuery.data?.lat ?? defaultPosition.lat}
+          lng={userPositionQuery.data?.lng ?? defaultPosition.lng}
+        />
         <MapHudConfiguration />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {query.data?.map((activity) => (
+        {activitiesQuery.data?.map((activity) => (
           <MapActivity key={activity.id} activity={activity} />
         ))}
       </MapContainer>
     </Container>
   );
+}
+
+const Container = styled.div`
+  height: 100%;
+  width: 100vw;
+`;
+
+function RecenterAutomatically({ lat, lng }: Coordinates) {
+  const map = useMap();
+  useEffect(() => {
+    map.setView([lat, lng]);
+  }, [lat, lng, map]);
+  return null;
 }
 
 function MapHudConfiguration() {
@@ -52,8 +74,3 @@ function MapHudConfiguration() {
 
   return null;
 }
-
-const Container = styled.div`
-  height: 100%;
-  width: 100vw;
-`;

@@ -1,4 +1,4 @@
-type Coordinates = [number, number];
+export type Coordinates = { lat: number; lng: number };
 
 export type Activity = {
   id: string;
