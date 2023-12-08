@@ -33,7 +33,8 @@ If you are developing a production application, we recommend updating the config
 - Create basic tests
 - Enable "Trusted domains" in HERE once I have a domain
 - Create singleton for HERE initialization in useGeoCoder
+- Add image upload to "create-actvity" form
 
 # Bugs
 
-- Autocomplete throws errors in console
+- All form fields throw errors in console

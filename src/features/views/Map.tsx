@@ -1,15 +1,21 @@
 import L, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import styled from "styled-components";
-import { activities } from "../../activities";
+import { useQuery } from "react-query";
 import { MapActivity } from "./components/MapActivity";
 import { useEffect } from "react";
+import { getActivities } from "../activities/utils/api";
+import { GenericError } from "@/components/layout/GenericError";
 
 const position: LatLngExpression = [55.6761, 12.5683];
 
-// TODO: hook up with msw and React Query
-
 export function Map() {
+  const query = useQuery("activities", getActivities);
+
+  if (query.isError) {
+    return <GenericError />;
+  }
+
   return (
     <Container>
       <MapContainer
@@ -21,7 +27,7 @@ export function Map() {
       >
         <MapHudConfiguration />
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {activities.map((activity) => (
+        {query.data?.map((activity) => (
           <MapActivity key={activity.id} activity={activity} />
         ))}
       </MapContainer>
