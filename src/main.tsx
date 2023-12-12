@@ -33,7 +33,7 @@ async function enableMocking() {
     onUnhandledRequest(request, print) {
       // Ignore any requests containing "openstreetmap.org" or "node_modules" in their URL.
       if (
-        request.url.includes("openstreetmap.org") ||
+        request.url.includes("basemaps.cartocdn.com") ||
         request.url.includes("node_modules")
       ) {
         return;
