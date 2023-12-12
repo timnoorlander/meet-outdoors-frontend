@@ -35,7 +35,10 @@ export function Map() {
           lng={userPositionQuery.data?.lng ?? defaultPosition.lng}
         />
         <MapHudConfiguration />
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        />
         {activitiesQuery.data?.map((activity) => (
           <MapActivity key={activity.id} activity={activity} />
         ))}
