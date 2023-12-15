@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ContentLayout } from "@/components/layout/ContentLayout";
 import styled from "styled-components";
@@ -12,6 +12,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { useGeoCoder } from "../hooks/useGeoCoder";
 import dayjs from "dayjs";
 import { GeoCoderResult } from "../types";
+import { useAuthentication } from "@/features/auth";
 
 const ACTIVITY_CATEGORIES = [
   "Birding",
@@ -31,6 +32,8 @@ type Inputs = {
 };
 
 export function CreateActivity() {
+  const { isAuthenticated } = useAuthentication();
+
   const navigate = useNavigate();
 
   const [locationInput, setLocationInput] = useState("");
@@ -69,6 +72,10 @@ export function CreateActivity() {
       navigate("/");
     }
   };
+
+  if (!isAuthenticated) {
+    return <Navigate replace to="/login"></Navigate>;
+  }
 
   return (
     <ContentLayout>

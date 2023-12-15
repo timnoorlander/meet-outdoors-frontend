@@ -9,6 +9,7 @@ import { AppRoutes } from "./routes/index.tsx";
 import "dayjs/locale/da";
 import { theme } from "./theme.ts";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { AuthenticationProvider } from "@/features/auth";
 
 const muiTheme = createTheme({
   palette: {
@@ -51,8 +52,10 @@ enableMocking().then(() => {
       <ThemeProvider theme={muiTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="da">
           <QueryClientProvider client={queryClient}>
-            <GlobalStyles />
-            <AppRoutes />
+            <AuthenticationProvider>
+              <GlobalStyles />
+              <AppRoutes />
+            </AuthenticationProvider>
           </QueryClientProvider>
         </LocalizationProvider>
       </ThemeProvider>
