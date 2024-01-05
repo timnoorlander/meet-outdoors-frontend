@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ContentLayout } from "@/components/layout/ContentLayout";
 import styled from "styled-components";
@@ -12,7 +12,6 @@ import useDebounce from "@/hooks/useDebounce";
 import { useGeoCoder } from "../hooks/useGeoCoder";
 import dayjs from "dayjs";
 import { GeoCoderResult } from "../types";
-import { useAuthentication } from "@/features/auth";
 
 const ACTIVITY_CATEGORIES = [
   "Birding",
@@ -32,9 +31,13 @@ type Inputs = {
 };
 
 export function CreateActivity() {
-  const { isAuthenticated } = useAuthentication();
-
   const navigate = useNavigate();
+
+  // axios.get(`${import.meta.env.VITE_BASE_URL}/users/me`, {
+  //   headers: {
+  //     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  //   },
+  // });
 
   const [locationInput, setLocationInput] = useState("");
   const debouncedLocationInput = useDebounce(locationInput, 1000);
@@ -65,17 +68,13 @@ export function CreateActivity() {
         startDateTime,
         location: inputs.location,
       });
+
+      navigate(-1);
     } catch (error) {
+      // TODO: handle error in a pretty way
       console.log(error);
-    } finally {
-      console.log("does it even get here?");
-      navigate("/");
     }
   };
-
-  if (!isAuthenticated) {
-    return <Navigate replace to="/login"></Navigate>;
-  }
 
   return (
     <ContentLayout>

@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 import React from "react";
 import { createContext, useContext, useState } from "react";
 
@@ -7,7 +8,7 @@ type AuthenticationProviderProps = {
 
 type AuthenticationProviderValue = {
   isAuthenticated: boolean;
-  login: (username: string, password: string) => void;
+  login: (email: string, password: string) => void;
   logout: () => void;
 };
 
@@ -20,8 +21,39 @@ export function AuthenticationProvider({
 }: AuthenticationProviderProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+
+      localStorage.setItem("access_token", response.data.access_token);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 400) {
+          throw new Error(error.response?.data?.message);
+        }
+
+        if (error.response?.status === 401) {
+          throw new Error("Email or password incorrect.");
+        }
+      }
+
+      throw new Error(
+        "Something went wrong while logging in. Please try again later."
+      );
+    }
+
+    setIsAuthenticated(true);
+  };
+  const logout = () => {
+    setIsAuthenticated(false);
+    localStorage.setItem("access_token", "");
+  };
 
   const contextValue = React.useMemo(
     () => ({
