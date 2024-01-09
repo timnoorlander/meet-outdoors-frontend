@@ -42,6 +42,12 @@ export function Login() {
     }
   };
 
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit(onSubmit)();
+    }
+  };
+
   return (
     <ContentLayout>
       <LoginContainer>
@@ -66,6 +72,7 @@ export function Login() {
               variant="outlined"
               error={!!errors.email}
               helperText={errors.email && errors.email.message}
+              onKeyDown={handleOnKeyDown}
               {...field}
             />
           )}
@@ -83,6 +90,7 @@ export function Login() {
               variant="outlined"
               error={!!errors.password}
               helperText={errors.password && errors.password.message}
+              onKeyDown={handleOnKeyDown}
               {...field}
             />
           )}
