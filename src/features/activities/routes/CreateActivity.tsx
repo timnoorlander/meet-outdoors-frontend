@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ContentLayout } from "@/components/layout/ContentLayout";
@@ -12,6 +11,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { useGeoCoder } from "../hooks/useGeoCoder";
 import dayjs from "dayjs";
 import { GeoCoderResult } from "../types";
+import axios from "@/utils/axios";
 
 const ACTIVITY_CATEGORIES = [
   "Birding",

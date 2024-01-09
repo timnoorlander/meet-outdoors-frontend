@@ -1,6 +1,8 @@
-import axios, { AxiosError } from "axios";
 import React from "react";
 import { createContext, useContext, useState } from "react";
+import { AxiosError } from "axios";
+import axios from "@/utils/axios";
+import { removeAccessToken, setAccessToken } from "../utils";
 
 type AuthenticationProviderProps = {
   children: React.ReactNode;
@@ -31,7 +33,7 @@ export function AuthenticationProvider({
         }
       );
 
-      localStorage.setItem("access_token", response.data.access_token);
+      setAccessToken(response.data.access_token);
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
@@ -52,7 +54,7 @@ export function AuthenticationProvider({
   };
   const logout = () => {
     setIsAuthenticated(false);
-    localStorage.setItem("access_token", "");
+    removeAccessToken();
   };
 
   const contextValue = React.useMemo(

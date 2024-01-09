@@ -1,5 +1,5 @@
 import { Activity } from "@/types";
-import axios from "axios";
+import axios from "@/utils/axios";
 
 export const getActivities = (): Promise<Activity[]> => {
   return axios.get("/activities").then((response) => {
