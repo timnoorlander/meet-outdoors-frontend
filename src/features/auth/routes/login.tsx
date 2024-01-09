@@ -45,7 +45,7 @@ export function Login() {
   return (
     <ContentLayout>
       <LoginContainer>
-        <h1>Login to Your Account</h1>
+        <h1>Log in</h1>
 
         {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
 
@@ -53,7 +53,13 @@ export function Login() {
           name="email"
           control={control}
           defaultValue=""
-          rules={{ required: "E-mail address is required" }}
+          rules={{
+            required: "E-mail address is required",
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Invalid email address",
+            },
+          }}
           render={({ field }) => (
             <TextField
               label="E-mail address"
@@ -100,3 +106,5 @@ const LoginContainer = styled.div`
 const ErrorContainer = styled.div`
   color: ${theme.color.error};
 `;
+
+const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
