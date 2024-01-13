@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../constants/theme";
 import { Link, NavLink } from "react-router-dom";
+import { BREAKPOINTS } from "@/constants";
 
 export function Header() {
   return (
@@ -37,6 +38,10 @@ const Container = styled.header`
   opacity: 0.9;
   background: ${theme.color.primary};
   color: white;
+
+  @media screen and (max-width: ${BREAKPOINTS.md.min}px) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`

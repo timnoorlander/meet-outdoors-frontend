@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Header } from "./Header";
-import { BREAKPOINTS } from "@/constants";
 import { TabBar } from "./TabBar";
 
 type Props = {
@@ -8,14 +7,11 @@ type Props = {
 };
 
 export function MainLayout({ children }: Props) {
-  const isSmallScreen = window.innerWidth <= BREAKPOINTS.sm.max;
-  const isLargeScreen = !isSmallScreen;
-
   return (
     <MainContainer>
-      {isLargeScreen && <Header />}
+      <Header />
       <ContentContainer>{children}</ContentContainer>
-      {isSmallScreen && <TabBar />}
+      <TabBar />
     </MainContainer>
   );
 }
