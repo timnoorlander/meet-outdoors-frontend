@@ -1,11 +1,11 @@
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  http.post("/create-activity", () => {
+  http.post("http://localhost:3000/create-activity", () => {
     return HttpResponse.json({ id: "94a3a0de-8c99-11ee-b9d1-0242ac120002" });
   }),
 
-  http.get("/activities", () => {
+  http.get("http://localhost:3000/activities", () => {
     return HttpResponse.json([
       {
         id: "8581d855-1b90-45a2-b507-3f4ef2048350",

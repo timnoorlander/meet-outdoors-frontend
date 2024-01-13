@@ -1,6 +1,6 @@
 import { Button } from "@/components/elements/Button";
 import { ContentLayout } from "@/components/layout/ContentLayout";
-import { theme } from "@/theme";
+import { theme } from "@/constants/theme";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";

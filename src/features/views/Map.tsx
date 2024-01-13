@@ -50,6 +50,7 @@ export function Map() {
 const Container = styled.div`
   height: 100%;
   width: 100vw;
+  isolation: isolate;
 `;
 
 function RecenterAutomatically({ lat, lng }: Coordinates) {

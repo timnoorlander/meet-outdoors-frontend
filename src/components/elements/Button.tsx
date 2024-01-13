@@ -1,4 +1,4 @@
-import { theme } from "@/theme";
+import { theme } from "@/constants/theme";
 import styled from "styled-components";
 
 export const Button = styled.button`

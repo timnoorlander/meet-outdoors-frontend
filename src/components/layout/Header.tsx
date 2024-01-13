@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../../constants/theme";
 import { Link, NavLink } from "react-router-dom";
 
 export function Header() {
@@ -33,8 +33,6 @@ export function Header() {
 }
 
 const Container = styled.header`
-  position: absolute;
-  z-index: 100000000;
   width: 100%;
   opacity: 0.9;
   background: ${theme.color.primary};

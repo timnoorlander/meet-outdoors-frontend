@@ -7,7 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { GlobalStyles } from "./global-styles.ts";
 import { AppRoutes } from "./routes/index.tsx";
 import "dayjs/locale/da";
-import { theme } from "./theme.ts";
+import { theme } from "./constants/theme.ts";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthenticationProvider } from "@/features/auth";
 

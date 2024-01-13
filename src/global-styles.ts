@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
-import { theme } from "./theme";
+import { theme } from "./constants/theme";
 
 const cssReset = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
