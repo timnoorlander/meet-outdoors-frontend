@@ -134,9 +134,6 @@ const cssReset = css`
 `;
 
 export const GlobalStyles = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
-  @import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
-
   ${cssReset}
 
   /* Leaflet white line fix */
@@ -151,14 +148,16 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   /* Fonts */
-  body {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  * {
+    font-family: 'Montserrat', sans-serif;  
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: ${theme.color.darkGreen};
     margin-bottom: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
   }
 
 `;

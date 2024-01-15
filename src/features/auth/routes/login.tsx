@@ -51,8 +51,8 @@ export function Login() {
 
   return (
     <ContentLayout backgroundUrl={loginBackground}>
-      <LoginContainer>
-        <h1>Log in</h1>
+      <Container>
+        <h1>Welcome back!</h1>
 
         {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
 
@@ -98,14 +98,18 @@ export function Login() {
             )}
           />
 
-          <Button type="submit">Login</Button>
+          <StyledButton type="submit">Log in</StyledButton>
         </Form>
-      </LoginContainer>
+      </Container>
+      <Container>
+        <h1>New here?</h1>
+        <Button>Create an account</Button>
+      </Container>
     </ContentLayout>
   );
 }
 
-const LoginContainer = styled.div`
+const Container = styled.section`
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
@@ -124,4 +128,8 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 2rem;
 `;
