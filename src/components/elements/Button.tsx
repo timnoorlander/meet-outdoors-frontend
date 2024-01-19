@@ -1,7 +1,11 @@
 import { theme } from "@/constants/theme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Button = styled.button`
+type Props = {
+  isFullWidth?: boolean;
+};
+
+export const Button = styled.button<Props>`
   background: ${theme.color.primary};
   color: white;
   border: 2px solid ${theme.color.primary};
@@ -13,6 +17,12 @@ export const Button = styled.button`
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
+
+  ${(props) =>
+    props.isFullWidth &&
+    css`
+      width: 100%;
+    `}
 
   &:hover {
     background: white;

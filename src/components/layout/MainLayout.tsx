@@ -7,11 +7,16 @@ type Props = {
 };
 
 export function MainLayout({ children }: Props) {
+  const routesWithoutMobileNav = ["/login", "/about"];
+  const isMobileNavVisible = !routesWithoutMobileNav.includes(
+    window.location.pathname
+  );
+
   return (
     <MainContainer>
       <Header />
       <ContentContainer>{children}</ContentContainer>
-      <TabBar />
+      {isMobileNavVisible && <TabBar />}
     </MainContainer>
   );
 }

@@ -3,8 +3,8 @@ import {
   BottomNavigationAction,
   styled,
 } from "@mui/material";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import ForestIcon from "@mui/icons-material/Forest";
+import AddIcon from "@mui/icons-material/Add";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { BREAKPOINTS } from "@/constants";
 
@@ -17,9 +17,9 @@ export function TabBar() {
         // setValue(newValue);
       }}
     >
-      <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label="Events" icon={<ForestIcon />} />
+      <BottomNavigationAction label="Create event" icon={<AddIcon />} />
+      <BottomNavigationAction label="Profile" icon={<LocationOnIcon />} />
     </StyledBottomNavigation>
   );
 }

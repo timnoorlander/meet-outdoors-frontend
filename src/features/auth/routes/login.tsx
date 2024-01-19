@@ -1,13 +1,13 @@
 import { Button } from "@/components/elements/Button";
-import { ContentLayout } from "@/components/layout/ContentLayout";
 import { theme } from "@/constants/theme";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useAuthentication } from "..";
 import loginBackground from "@/assets/trees.avif";
+import { BREAKPOINTS } from "@/constants";
 
 type Inputs = {
   email: string;
@@ -50,8 +50,8 @@ export function Login() {
   };
 
   return (
-    <ContentLayout backgroundUrl={loginBackground}>
-      <Container>
+    <Container backgroundUrl={loginBackground}>
+      <Box>
         <h1>Welcome back!</h1>
 
         {errorMessage && <ErrorContainer>{errorMessage}</ErrorContainer>}
@@ -100,23 +100,14 @@ export function Login() {
 
           <StyledButton type="submit">Log in</StyledButton>
         </Form>
-      </Container>
-      <Container>
+      </Box>
+      <Box>
         <h1>New here?</h1>
-        <Button>Create an account</Button>
-      </Container>
-    </ContentLayout>
+        <Button isFullWidth>Create an account</Button>
+      </Box>
+    </Container>
   );
 }
-
-const Container = styled.section`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;
-  padding: 50px;
-  border-radius: 16px;
-  background: white;
-`;
 
 const ErrorContainer = styled.div`
   color: ${theme.color.error};
@@ -127,9 +118,44 @@ const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.5rem;
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 2rem;
+`;
+
+type ContainerProps = {
+  backgroundUrl?: string;
+};
+
+export const Container = styled.div<ContainerProps>`
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100%;
+
+  ${(props) => {
+    console.log(props);
+    return props.backgroundUrl
+      ? css`
+          background-image: url(${props.backgroundUrl});
+          background-size: cover;
+          background-position: center;
+        `
+      : null;
+  }}
+
+  @media screen and (min-width: ${BREAKPOINTS.lg.min}px) {
+    flex-direction: row;
+  }
+`;
+
+const Box = styled.section`
+  width: clamp(0rem, 100%, 20rem);
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: white;
 `;

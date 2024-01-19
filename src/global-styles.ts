@@ -153,11 +153,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, -1.0455rem + 9.0909vw, 3rem);
     color: ${theme.color.darkGreen};
     margin-bottom: 1.5rem;
     font-weight: 900;
     font-style: italic;
   }
+
+
 
 `;
