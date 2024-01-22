@@ -1,4 +1,3 @@
-import { theme } from "@/constants/theme";
 import styled, { css } from "styled-components";
 
 type Props = {
@@ -6,9 +5,9 @@ type Props = {
 };
 
 export const Button = styled.button<Props>`
-  background: ${theme.color.primary};
+  background: ${(props) => props.theme.colors.primary};
   color: white;
-  border: 2px solid ${theme.color.primary};
+  border: 2px solid ${(props) => props.theme.colors.primary};
   border-radius: 4px;
   padding: 8px 12px;
   font-size: 1rem;
@@ -26,7 +25,7 @@ export const Button = styled.button<Props>`
 
   &:hover {
     background: white;
-    color: ${theme.color.primary};
+    color: ${(props) => props.theme.colors.primary};
     border: 2px solid white;
   }
 `;

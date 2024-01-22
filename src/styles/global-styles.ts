@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
-import { theme } from "./constants/theme";
+import { Theme } from "./theme";
 
 const cssReset = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -133,7 +133,7 @@ const cssReset = css`
   }
 `;
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
   ${cssReset}
 
   /* Leaflet white line fix */
@@ -154,7 +154,7 @@ export const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-size: clamp(2rem, -1.0455rem + 9.0909vw, 3rem);
-    color: ${theme.color.darkGreen};
+    color: ${(props) => props.theme.colors.darkGreen};
     margin-bottom: 1.5rem;
     font-weight: 900;
     font-style: italic;

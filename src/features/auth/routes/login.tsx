@@ -1,5 +1,4 @@
 import { Button } from "@/components/elements/Button";
-import { theme } from "@/constants/theme";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -7,7 +6,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { useAuthentication } from "..";
 import loginBackground from "@/assets/trees.avif";
-import { BREAKPOINTS } from "@/constants";
 
 type Inputs = {
   email: string;
@@ -110,7 +108,7 @@ export function Login() {
 }
 
 const ErrorContainer = styled.div`
-  color: ${theme.color.error};
+  color: ${(props) => props.theme.colors.error};
 `;
 
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -148,7 +146,7 @@ export const Container = styled.div<ContainerProps>`
       : null;
   }}
 
-  @media screen and (min-width: ${BREAKPOINTS.lg.min}px) {
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.md}) {
     flex-direction: row;
   }
 `;

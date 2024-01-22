@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../constants/theme";
 import { Link, NavLink } from "react-router-dom";
-import { BREAKPOINTS } from "@/constants";
 
 export function Header() {
   return (
@@ -36,10 +34,10 @@ export function Header() {
 const Container = styled.header`
   width: 100%;
   opacity: 0.9;
-  background: ${theme.color.primary};
+  background: ${(props) => props.theme.colors.primary};
   color: white;
 
-  @media screen and (max-width: ${BREAKPOINTS.md.min}px) {
+  @media screen and (max-width: ${(props) => props.theme.breakpoints.md}) {
     display: none;
   }
 `;
@@ -64,7 +62,7 @@ const Title = styled.h1`
 `;
 
 const TitleMiddlePart = styled.span`
-  color: ${theme.color.lightGreen};
+  color: ${(props) => props.theme.colors.lightGreen};
 `;
 
 // TODO: button underline is gone.
@@ -125,6 +123,6 @@ const HeaderButton = styled.button`
 
   &:hover {
     background: white;
-    color: ${theme.color.primary};
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
