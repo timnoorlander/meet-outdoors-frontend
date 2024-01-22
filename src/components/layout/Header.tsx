@@ -58,6 +58,7 @@ const TitleLink = styled(Link)`
 const Title = styled.h1`
   font-weight: bold;
   font-size: 2rem;
+  margin-bottom: 0;
   text-decoration: none;
   color: white;
 `;
