@@ -130,7 +130,7 @@ type ContainerProps = {
 };
 
 export const Container = styled.div<ContainerProps>`
-  padding: 0 2rem;
+  padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { Header } from "./Header";
 import { TabBar } from "./TabBar";
+import { useLocation } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export function MainLayout({ children }: Props) {
-  const routesWithoutMobileNav = ["/login", "/about"];
-  const isMobileNavVisible = !routesWithoutMobileNav.includes(
-    window.location.pathname
-  );
+  const { pathname } = useLocation();
+  const routesWithoutMobileNav = ["/login", "/register"];
+  const isMobileNavVisible = !routesWithoutMobileNav.includes(pathname);
 
   return (
     <MainContainer>

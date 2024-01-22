@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import ForestIcon from "@mui/icons-material/Forest";
 import AddIcon from "@mui/icons-material/Add";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PersonIcon from "@mui/icons-material/Person";
 import { BREAKPOINTS } from "@/constants";
 
 export function TabBar() {
@@ -19,7 +19,7 @@ export function TabBar() {
     >
       <BottomNavigationAction label="Events" icon={<ForestIcon />} />
       <BottomNavigationAction label="Create event" icon={<AddIcon />} />
-      <BottomNavigationAction label="Profile" icon={<LocationOnIcon />} />
+      <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
     </StyledBottomNavigation>
   );
 }
