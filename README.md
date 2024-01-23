@@ -23,6 +23,12 @@ I would use my own platform for the following reasons:
 - I'd love to be inspired by and learn from others that are more experienced in a certain activity, like birding.
 - I don't have Facebook and I don't feel like paying for MeetUp.
 
+## Roadmap
+
+I didn't create a proper roadmap, but you can check the progress of the project here: https://trello.com/b/W4Bbuoa1/meetoutdoors
+
+(Apologies if some to-do items are a bit vague. I'm currently the only one using it so for me it suffices.)
+
 ## Installation
 
 ### 1. Clone the Repository
