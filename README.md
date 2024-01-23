@@ -12,7 +12,7 @@ MeetOutdoors will be a very simple platform where you can host outdoor activitie
 
 There are three main user stories:
 
-- As a user I want to create an activity so others have the possibility to join.
+- As a user I want to create an activity so otphers have the possibility to join.
 - As a user I want to see when and where activities are happening.
 - As a user I want to join an activity.
 
@@ -68,39 +68,39 @@ $ npm run test
 
 ## Technology Stack
 
-- **Language:**
+**Language:**
 
-  - TypeScript
+- TypeScript
 
-- **UI development library**
+**UI development library**
 
-  - React
+- React
 
-- **Styling:**
+**Styling:**
 
-  - Styled Components
-  - Material-UI
+- Styled Components
+- Material-UI
 
-- **State Management:**
+**State Management:**
 
-  - React Query
+- React Query
 
-- **Build Tool:**
+**Build Tool:**
 
-  - Vite
+- Vite
 
-- **Tests:**
+**Tests:**
 
-  - Jest
-  - React Testing Library
+- Jest
+- React Testing Library
 
-- **Mocking API:**
+**Mocking API:**
 
-  - MSW (Mock Service Worker)
+- MSW (Mock Service Worker)
 
-- **Mapping:**
+**Mapping:**
 
-  - Leaflet
+- Leaflet
 
 ### License
 
