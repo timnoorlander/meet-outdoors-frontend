@@ -30,7 +30,7 @@ export function useGeoCoder(searchInput: string) {
     };
 
     const errorCallback = () => {
-      console.log("something went wrong");
+      console.error("something went wrong");
     };
 
     service.geocode(

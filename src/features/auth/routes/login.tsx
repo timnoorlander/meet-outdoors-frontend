@@ -136,7 +136,6 @@ export const Container = styled.div<ContainerProps>`
   min-height: 100%;
 
   ${(props) => {
-    console.log(props);
     return props.backgroundUrl
       ? css`
           background-image: url(${props.backgroundUrl});

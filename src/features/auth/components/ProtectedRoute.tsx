@@ -9,8 +9,6 @@ export function ProtectedRoute({ children }: Props) {
   const location = useLocation();
   const { isAuthenticated } = useAuthentication();
 
-  console.log({ isAuthenticated });
-
   if (!isAuthenticated) {
     return (
       <Navigate
