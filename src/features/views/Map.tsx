@@ -11,7 +11,7 @@ import { getCurrentLocation } from "../activities/utils/map";
 
 const copenhagenCoordinates: Coordinates = { lat: 55.6761, lng: 12.5683 };
 const defaultPosition = copenhagenCoordinates;
-const defaultZoom = 12;
+const defaultZoom = 11;
 
 export function Map() {
   const activitiesQuery = useQuery("activities", getActivities);

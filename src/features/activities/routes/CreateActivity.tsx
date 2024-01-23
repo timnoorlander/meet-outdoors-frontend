@@ -58,8 +58,6 @@ export function CreateActivity() {
       inputs.startTime
     ).toISOString();
 
-    console.log(startDateTime);
-
     try {
       await axios.post("/create-activity", {
         title: inputs.title,
