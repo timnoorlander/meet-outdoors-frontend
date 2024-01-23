@@ -1,40 +1,101 @@
-# React + TypeScript + Vite
+# MeetOutdoors Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Technology Stack](#technology-stack)
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+MeetOutdoors will be a very simple platform where you can host outdoor activities and see what activities are happening around you. An outdoor activity can be anything outdoors, like running, hiking, swimming, birding or camping. The goal is to connect people with both nature and each other in the most simple way possible.
 
-## Expanding the ESLint configuration
+There are three main user stories:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- As a user I want to create an activity so others have the possibility to join.
+- As a user I want to see when and where activities are happening.
+- As a user I want to join an activity.
 
-- Configure the top-level `parserOptions` property like this:
+I would use my own platform for the following reasons:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+- I enjoy going outdoors but I don't always feel like going alone.
+- It would make me happy to introduce others to the outdoor activities I'm passionate about.
+- I'd love to be inspired by and learn from others that are more experienced in a certain activity, like birding.
+- I don't have Facebook and I don't feel like paying for MeetUp.
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/timnoorlander/meet-outdoors-frontend
+cd meet-outdoors-frontend
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2. Install Dependencies
 
-# To-do
+_Install 3rd party dependencies_
 
-- Set up MSW
-- Finish visual part of create activity form
-- Create basic tests
-- Enable "Trusted domains" in HERE once I have a domain
-- Create singleton for HERE initialization in useGeoCoder
-- Add image upload to "create-actvity" form
+```bash
+$ npm install
+```
 
-# Bugs
+_Install Meet Outdoors Core_
 
-- All form fields throw errors in console
+Even though MSW is used for this project and the goal is to mock all requests, it might be that in some point in time not all requests are mocked. Go to https://github.com/timnoorlander/meet-outdoors-core and check the README to learn how to set it up.
+
+## Usage
+
+```bash
+# development
+$ npm run dev
+
+# build for production
+$ npm run build
+
+# lint
+$ npm run lint
+
+# test
+$ npm run test
+```
+
+## Technology Stack
+
+- **Language:**
+
+  - TypeScript
+
+- **UI development library**
+
+  - React
+
+- **Styling:**
+
+  - Styled Components
+  - Material-UI
+
+- **State Management:**
+
+  - React Query
+
+- **Build Tool:**
+
+  - Vite
+
+- **Tests:**
+
+  - Jest
+  - React Testing Library
+
+- **Mocking API:**
+
+  - MSW (Mock Service Worker)
+
+- **Mapping:**
+
+  - Leaflet
+
+### License
+
+This project is licensed under the MIT LICENSE - see the [LICENSE.md](LICENSE.md) file for details.
