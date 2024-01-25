@@ -12,7 +12,7 @@ MeetOutdoors will be a very simple platform where you can host outdoor activitie
 
 There are three main user stories:
 
-- As a user I want to create an activity so otphers have the possibility to join.
+- As a user I want to create an activity so others have the possibility to join.
 - As a user I want to see when and where activities are happening.
 - As a user I want to join an activity.
 
