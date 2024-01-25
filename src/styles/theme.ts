@@ -16,6 +16,12 @@ export const theme = {
     body: "'Montserrat', sans-serif",
     heading: "'Montserrat', sans-serif",
   },
+  fontSizes: {
+    xs: "0.85rem",
+    sm: "1rem",
+    md: "2rem",
+    lg: "3rem",
+  },
 };
 
 export type Theme = typeof theme;
