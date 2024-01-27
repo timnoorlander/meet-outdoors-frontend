@@ -2,7 +2,12 @@ import React from "react";
 import { createContext, useContext, useState } from "react";
 import { AxiosError } from "axios";
 import axios from "@/utils/axios";
-import { removeAccessToken, setAccessToken } from "../utils";
+import {
+  getLocalAccessToken,
+  isAccessTokenValid,
+  removeLocalAccessToken,
+  setLocalAccessToken,
+} from "../utils";
 
 type AuthenticationProviderProps = {
   children: React.ReactNode;
@@ -14,6 +19,8 @@ type AuthenticationProviderValue = {
   logout: () => void;
 };
 
+const localAccessToken = getLocalAccessToken();
+
 const AuthenticationContext = createContext<
   AuthenticationProviderValue | undefined
 >(undefined);
@@ -21,7 +28,9 @@ const AuthenticationContext = createContext<
 export function AuthenticationProvider({
   children,
 }: AuthenticationProviderProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localAccessToken ? isAccessTokenValid(localAccessToken) : false
+  );
 
   const login = async (email: string, password: string) => {
     try {
@@ -33,7 +42,7 @@ export function AuthenticationProvider({
         }
       );
 
-      setAccessToken(response.data.access_token);
+      setLocalAccessToken(response.data.access_token);
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 400) {
@@ -54,7 +63,7 @@ export function AuthenticationProvider({
   };
   const logout = () => {
     setIsAuthenticated(false);
-    removeAccessToken();
+    removeLocalAccessToken();
   };
 
   const contextValue = React.useMemo(

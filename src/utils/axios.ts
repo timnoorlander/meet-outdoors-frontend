@@ -1,4 +1,4 @@
-import { getAccessToken } from "@/features/auth/utils";
+import { getLocalAccessToken } from "@/features/auth/utils";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = getAccessToken();
+    const token = getLocalAccessToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
